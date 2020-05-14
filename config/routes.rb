@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :project_pictures
+  resources :projects
   resources :pictures
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -18,5 +20,7 @@ Rails.application.routes.draw do
   post '/photo', to: 'pictures#create'
   get '/allPhotos', to: 'pictures#index'
   post '/deletePhoto', to: 'pictures#delete'
-  
+  get '/projects', to: 'projects#index'
+  post '/newProject', to: 'projects#create'
+  post 'deleteProject', to: 'projects#delete'
 end
