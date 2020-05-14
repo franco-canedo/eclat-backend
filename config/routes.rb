@@ -10,10 +10,13 @@ Rails.application.routes.draw do
       get '/profile', to: 'users#profile'
       patch '/update', to: 'users#update'
       get '/gallery', to: 'users#gallery'
+      post '/updateAbout', to: 'users#updateAbout'
+      post 'updateContact', to: 'users#updateContact'
     end
   end
 
   post '/photo', to: 'pictures#create'
   get '/allPhotos', to: 'pictures#index'
   post '/deletePhoto', to: 'pictures#delete'
+  
 end
