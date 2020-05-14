@@ -12,4 +12,8 @@ Rails.application.routes.draw do
       get '/gallery', to: 'users#gallery'
     end
   end
+
+  post '/photo', to: 'pictures#create'
+  get '/allPhotos', to: 'pictures#index'
+  post '/deletePhoto', to: 'pictures#delete'
 end
