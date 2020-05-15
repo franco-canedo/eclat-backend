@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-    skip_before_action :authorized, only: [:create, :index, :delete, :show]
+    skip_before_action :authorized, only: [:create, :index, :delete, :show, :edit]
 
     def index
         projects = Project.all 
@@ -17,6 +17,22 @@ class ProjectsController < ApplicationController
         render json: project
     end 
 
+    def edit 
+        project = Project.find(params[:id])
+        project.address = params[:address]
+        project.beds = params[:beds]
+        project.baths = params[:baths]
+        project.completion_date = params[:completion_date]
+        project.square_feet = params[:square_feet]
+        if params[:avatar]
+            project.avatar.purge
+            project.avatar.attach(params[:avatar])
+            project.photo = url_for(project.avatar)
+        end 
+        project.save
+        render json: project
+    end 
+
     def delete 
         project = Project.find_by(id: params[:id])
         project.delete
@@ -26,6 +42,7 @@ class ProjectsController < ApplicationController
     private
  
     def project_params
-        params.permit(:id, :address, :beds, :baths, :completion_date, :user_id)
+        params.permit(:id, :address, :beds, :baths, :completion_date,
+         :square_feet, :user_id, :avatar)
     end
 end
