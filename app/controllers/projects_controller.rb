@@ -1,9 +1,14 @@
 class ProjectsController < ApplicationController
-    skip_before_action :authorized, only: [:create, :index, :delete]
+    skip_before_action :authorized, only: [:create, :index, :delete, :show]
 
     def index
         projects = Project.all 
         render json: projects
+    end 
+
+    def show
+        project = Project.find(params[:id])
+        render json: project
     end 
 
     def create
