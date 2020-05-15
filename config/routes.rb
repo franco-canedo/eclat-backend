@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get '/gallery', to: 'users#gallery'
       post '/updateAbout', to: 'users#updateAbout'
       post 'updateContact', to: 'users#updateContact'
+      get '/aboutInfo', to: 'users#about'
     end
   end
 

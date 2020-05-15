@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :update, :gallery, :updateAbout, :updateContact]
+    skip_before_action :authorized, only: [:create, :update, :gallery, :updateAbout, :updateContact, :about]
  
   def profile
     render json: { user: UserSerializer.new(current_user) }, status: :accepted
@@ -42,6 +42,11 @@ class Api::V1::UsersController < ApplicationController
     user.phone_number = params[:phone_number]
     user.save
     render json: user  
+  end 
+
+  def about
+    user = User.first
+    render json: user
   end 
  
   private
