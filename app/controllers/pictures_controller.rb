@@ -21,6 +21,12 @@ class PicturesController < ApplicationController
         render json: picture
     end 
 
+    def logo 
+        user = User.first
+        # byebug
+        render json: user
+      end 
+
     private
 
     def picture_params

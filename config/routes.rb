@@ -10,7 +10,8 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
-      patch '/update', to: 'users#update'
+      post '/update', to: 'users#update'
+      get '/logo', to: 'users#logo'
       get '/gallery', to: 'users#gallery'
       post '/updateAbout', to: 'users#updateAbout'
       post 'updateContact', to: 'users#updateContact'
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
   end
 
   post '/photo', to: 'pictures#create'
+  get '/getLogo', to: 'pictures#logo'
   get '/allPhotos', to: 'pictures#index'
   post '/deletePhoto', to: 'pictures#delete'
   get '/projects', to: 'projects#index'
