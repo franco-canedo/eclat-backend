@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_233310) do
+ActiveRecord::Schema.define(version: 2020_05_15_150938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,26 @@ ActiveRecord::Schema.define(version: 2020_05_13_233310) do
     t.string "photo"
   end
 
+  create_table "project_pictures", force: :cascade do |t|
+    t.string "address"
+    t.integer "project_id"
+    t.string "photo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "address"
+    t.string "beds"
+    t.string "baths"
+    t.string "completion_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.string "square_feet"
+    t.string "photo"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -51,6 +71,12 @@ ActiveRecord::Schema.define(version: 2020_05_13_233310) do
     t.string "avatar"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "motto"
+    t.string "who_we_are"
+    t.string "company_name"
+    t.string "company_address"
+    t.string "email"
+    t.string "phone_number"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
