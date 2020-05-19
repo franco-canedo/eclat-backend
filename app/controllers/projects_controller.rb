@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
         project.baths = params[:baths]
         project.completion_date = params[:completion_date]
         project.square_feet = params[:square_feet]
+        project.comment = params[:comment]
         if params[:avatar]
             project.avatar.purge
             project.avatar.attach(params[:avatar])
@@ -43,6 +44,6 @@ class ProjectsController < ApplicationController
  
     def project_params
         params.permit(:id, :address, :beds, :baths, :completion_date,
-         :square_feet, :user_id, :avatar)
+         :square_feet, :user_id, :avatar, :comment)
     end
 end

@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :update, :gallery, :updateAbout, :updateContact, :about]
+    skip_before_action :authorized, only: [:create, :update, :gallery, :updateAbout, :updateContact, :about, :logo]
  
   def profile
     render json: { user: UserSerializer.new(current_user) }, status: :accepted
@@ -17,13 +17,22 @@ class Api::V1::UsersController < ApplicationController
 
   def update
     user = User.first
-    user.photos.attach(params[:photos])
-    render json: user.photos
+    user.photo.purge
+    user.photo.attach(params[:photo])
+    user.avatar = url_for(user.photo)
+    user.save
+    render json: user.avatar
   end 
 
   def gallery
     user = User.first
     render json: user.photos
+  end 
+
+  def logo 
+    user = User.first
+    # byebug
+    render json: user
   end 
 
   def updateAbout
@@ -53,6 +62,6 @@ class Api::V1::UsersController < ApplicationController
  
   def user_params
     params.require(:user).permit(:username, :password, :motto, :who_we_are, 
-    :company_name, :company_address, :email, :phone_number, photos: [])
+    :company_name, :company_address, :email, :phone_number, :photo)
   end
 end

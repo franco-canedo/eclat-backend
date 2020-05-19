@@ -3,7 +3,8 @@ class PicturesController < ApplicationController
 
     def index
         pictures = Picture.all
-        render json: pictures
+        reverse_pics = pictures.reverse
+        render json: reverse_pics
     end 
 
     def create
@@ -20,6 +21,12 @@ class PicturesController < ApplicationController
         picture.delete
         render json: picture
     end 
+
+    def logo 
+        user = User.first
+        # byebug
+        render json: user
+      end 
 
     private
 
