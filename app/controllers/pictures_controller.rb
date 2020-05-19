@@ -3,7 +3,8 @@ class PicturesController < ApplicationController
 
     def index
         pictures = Picture.all
-        render json: pictures
+        reverse_pics = pictures.reverse
+        render json: reverse_pics
     end 
 
     def create
