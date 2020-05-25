@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 's3/direct_post'
   resources :project_pictures
   resources :projects
   resources :pictures
@@ -30,4 +31,6 @@ Rails.application.routes.draw do
   post '/projectPicture', to: 'project_pictures#create'
   get '/projects/:id', to: 'projects#show'
   post '/deleteProjectPicture', to: 'project_pictures#delete'
+  get '/s3/direct_post', to: 's3#direct_post'
+
 end

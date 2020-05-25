@@ -10,7 +10,8 @@ class PicturesController < ApplicationController
     def create
         picture = Picture.create(user_id: params[:user_id], address: params[:address])
         picture.avatar.attach(params[:avatar])
-        picture.photo = url_for(picture.avatar)
+        # picture.photo = url_for(picture.avatar)
+        picture.photo = params[:url]
         picture.save
         render json: picture
     end 
@@ -31,6 +32,6 @@ class PicturesController < ApplicationController
     private
 
     def picture_params
-        require(:picture).permit(:id, :address, :user_id, :avatar)
+        require(:picture).permit(:id, :address, :user_id, :avatar, :url)
     end 
 end
