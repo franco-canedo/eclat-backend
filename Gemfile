@@ -51,3 +51,4 @@ gem "faker", "~> 2.11"
 
 gem "aws-sdk-s3", "~> 1.66"
 gem "dotenv-rails", "~> 2.7"
+
