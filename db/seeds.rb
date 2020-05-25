@@ -11,3 +11,4 @@ Picture.destroy_all
 Project.destroy_all
 
 
+User.create(username: 'guido', password: 'Clavis65')
