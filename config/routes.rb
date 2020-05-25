@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 's3/direct_post'
   resources :project_pictures
   resources :projects
   resources :pictures
