@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
         if params[:avatar]
             project.avatar.purge
             project.avatar.attach(params[:avatar])
-            project.photo = url_for(project.avatar)
+            project.photo = params[:url]
         end 
         project.save
         render json: project
@@ -44,6 +44,6 @@ class ProjectsController < ApplicationController
  
     def project_params
         params.permit(:id, :address, :beds, :baths, :completion_date,
-         :square_feet, :user_id, :avatar, :comment)
+         :square_feet, :user_id, :avatar, :comment, :url)
     end
 end

@@ -11,7 +11,7 @@ class ProjectPicturesController < ApplicationController
         project_picture = ProjectPicture.create(
             project_id: params[:project_id], address: params[:address])
         project_picture.avatar.attach(params[:avatar])
-        project_picture.photo = url_for(project_picture.avatar)
+        project_picture.photo = params[:url]
         project_picture.save
         render json: project_picture
     end 
@@ -26,6 +26,6 @@ class ProjectPicturesController < ApplicationController
     private
 
     def picture_params
-        params.require(:project_picture).permit(:id, :address, :project_id, :avatar)
+        params.require(:project_picture).permit(:id, :address, :project_id, :avatar, :url)
     end 
 end

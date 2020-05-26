@@ -19,7 +19,8 @@ class Api::V1::UsersController < ApplicationController
     user = User.first
     user.photo.purge
     user.photo.attach(params[:photo])
-    user.avatar = url_for(user.photo)
+    # user.avatar = url_for(user.photo)
+    user.avatar = params[:url]
     user.save
     render json: user.avatar
   end 
@@ -62,6 +63,6 @@ class Api::V1::UsersController < ApplicationController
  
   def user_params
     params.require(:user).permit(:username, :password, :motto, :who_we_are, 
-    :company_name, :company_address, :email, :phone_number, :photo)
+    :company_name, :company_address, :email, :phone_number, :photo, :url)
   end
 end
